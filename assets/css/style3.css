@@ -1,0 +1,271 @@
+.book {
+    transition: opacity 0.4s 0.2s;
+  }
+  p{
+    margin-top: 8vw;
+    
+    /* font-size: 5vw; */
+    color: #000000;
+ 
+  }
+  .page {
+    width: 30vw;
+    height: 44vw;
+    background-color: #111111;
+    float: left;
+    margin-bottom: 0.5em;
+    background: left top no-repeat;
+    background-size: cover;
+  }
+  .page:nth-child(even) {
+    clear: both;
+  }
+  .book {
+    perspective: 250vw;
+  }
+  .book .pages {
+    width: 60vw;
+    height: 44vw;
+    position: relative;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    border-radius: 4px;
+    /*box-shadow: 0 0 0 1px #e3dfd8;*/
+  }
+  .book .page {
+    float: none;
+    clear: none;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    width: 30vw;
+    height: 44vw;
+    transform-origin: 0 0;
+    transition: transform 1.4s;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    user-select: none;
+    background-color: #f0f0f0;
+  }
+  .book .page:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.7s;
+    z-index: 2;
+  }
+  .move-left {
+    position: relative;
+    left: -100px; /* Di chuyển qua trái 100px */
+    transition: left 0.5s; /* Thời gian di chuyển và hiệu ứng chuyển đổi */
+  }
+  .book .page:nth-child(odd) {
+    pointer-events: all;
+    transform: rotateY(0deg);
+    right: 0;
+    border-radius: 0 4px 4px 0;
+    background-image: linear-gradient(to right, rgba(0,0,0,.15) 0%, rgba(0,0,0,0) 10%);
+  }
+  .book .page:nth-child(odd):hover {
+    transform: rotateY(-15deg);
+  }
+  .book .page:nth-child(odd):hover:before {
+    background: rgba(0, 0, 0, 0.03);
+  }
+  .book .page:nth-child(odd):before {
+    background: rgba(0, 0, 0, 0);
+    
+
+  }
+  @media (max-width: 400px) {
+    .book {
+        margin-left: 0; /* Adjust margins or spacing for small screens */
+    }
+    .page {
+        background-size: cover; /* Ensure background images scale properly */
+    }
+    .book-title {
+        font-size: 20px; /* Adjust title font size for small screens */
+    }
+    .book-content {
+        font-size: -4px; /* Adjust content font size for small screens */
+        margin-left: 10px; /* Adjust content margins or padding for small screens */
+    }
+    #model-content {
+      margin: 0 auto; width:50% ;left:-118px;
+    }
+}
+
+@media (max-width: 768px) {
+  .book {
+      margin-left: 0; /* Adjust margins or spacing as needed */
+  }
+  .page {
+      background-size: cover; /* Ensure background images scale properly */
+      font-size: 14px; /* Adjust text size as needed */
+  }
+  .book-title {
+      font-size: 20px; /* Adjust title font size */
+  }
+  .book-content {
+      font-size: 14px; /* Adjust content font size */
+      margin-left: 10px; /* Adjust content margins or padding */
+  }
+  #model-content-resp {
+    margin: 0 auto; width:50% ;left:-118px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1025px) {
+  .book {
+      margin-left: 0; /* Adjust margins or spacing for screens in this range */
+  }
+  .page {
+      background-size: cover; /* Ensure background images scale properly */
+  }
+  .book-title {
+      font-size: 24px; /* Adjust title font size for screens in this range */
+  }
+  .book-content {
+      font-size: 16px; /* Adjust content font size for screens in this range */
+      margin-left: 10px; /* Adjust content margins or padding for screens in this range */
+  }
+}
+
+
+@media (max-width: 1025px) {
+  .book {
+      margin-left: 0; /* Adjust margins or spacing for screens up to 1025px */
+  }
+  .page {
+      background-size: cover; /* Ensure background images scale properly */
+  }
+  .book-title {
+      font-size: 24px; /* Adjust title font size for screens up to 1025px */
+  }
+  .book-content {
+      font-size: 16px; /* Adjust content font size for screens up to 1025px */
+      margin-left: 10px; /* Adjust content margins or padding for screens up to 1025px */
+  }
+}
+  .page p {
+    text-align: justify; /* Căn lề đều */
+    text-justify: inter-word; /* Căn lề từng từ */
+    margin: 0; /* Loại bỏ khoảng cách ở lề */
+    padding: 0; /* Loại bỏ khoảng cách ở lề */
+    line-height: 1.2; /* Khoảng cách giữa các dòng */
+    word-spacing: 0.1em; /* Khoảng cách giữa các từ */
+  }
+  .book .page:nth-child(even) {
+    pointer-events: none;
+    transform: rotateY(180deg);
+    transform-origin: 100% 0;
+    left: 0;
+    border-radius: 4px 0 0 4px;
+    border-color: black;
+    background-image: linear-gradient(to left, rgba(0,0,0,.12) 0%, rgba(0,0,0,0) 10%);
+  }
+  .book .page:nth-child(even):before {
+    background: rgba(0, 0, 0, 0.2);
+  }
+  .book .page.grabbing {
+    transition: none;
+  }
+  .book .page.flipped:nth-child(odd) {
+    pointer-events: none;
+    transform: rotateY(-180deg);
+  }
+  .book .page.flipped:nth-child(odd):before {
+    background: rgba(0, 0, 0, 0.2);
+  }
+  .book .page.flipped:nth-child(even) {
+    pointer-events: all;
+    transform: rotateY(0deg);
+  }
+  .book .page.flipped:nth-child(even):hover {
+    transform: rotateY(15deg);
+  }
+  .book .page.flipped:nth-child(even):hover:before {
+    background: rgba(0, 0, 0, 0.03);
+  }
+  .book .page.flipped:nth-child(even):before {
+    background: rgba(0, 0, 0, 0);
+    
+  }
+  .page p {
+    text-align: justify; /* Căn lề đều */
+    text-justify: inter-word; /* Căn lề từng từ */
+    margin: 0; /* Loại bỏ khoảng cách ở lề */
+    padding: 0; /* Loại bỏ khoảng cách ở lề */
+    line-height: 1.2; /* Khoảng cách giữa các dòng */
+    word-spacing: 0.1em; /* Khoảng cách giữa các từ */
+  }
+  .book-content {
+    text-align: justify; /* Căn lề đều */
+    margin: 0; /* Loại bỏ khoảng cách ở lề */
+    padding: 0; /* Loại bỏ khoảng cách ở lề */
+    line-height: 1.5; /* Khoảng cách giữa các dòng */
+  }
+  *,
+  * :before,
+  *:after {
+    
+    box-sizing: border-box;
+}
+.book-cover {
+    text-align: center;
+    padding: 50px 0;
+    background-color: #f3f3f3; /* Set the background color of the cover */
+  }
+  
+  .book-cover h1 {
+    font-size: 36px;
+    color: #333; /* Set the text color for the title */
+  }
+  
+  .book-cover p {
+    font-size: 18px;
+    color: #666; /* Set the text color for the subtitle */
+  }
+  
+  .book-cover img {
+    max-width: 100%;
+  }
+  
+
+
+/* .book-title {
+    text-align: center;
+    padding-top: 5%;
+} */
+.book-content {
+    margin: 0;
+}
+.page p {
+    margin: 0;
+    padding-top: 20%;
+    
+}
+h2 {
+	font-size: 30pt;
+	font-weight: 300;
+	color: #35312b;
+	
+}
+.formatted-text {
+  max-width: 400px; /* Set the maximum line length here */
+  text-align: justify; /* Justify the text to align both left and right edges */
+}
+
+.formatted-text p {
+  text-align: left; /* Reset text alignment to left for the last line */
+}
+  
+  
+  
+  
